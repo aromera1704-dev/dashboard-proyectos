@@ -429,15 +429,15 @@
             
             fases.forEach(fase => {
                 // Filtrar tareas de la fase:
-                // - Que empiecen con el número de fase (ej: "1.")
-                // - Que NO sean la tarea nivel 1 (la fase misma)
+                // - Que tengan el campo "fase" igual al nombre de la fase
+                // - Que NO sean nivel 1 (la fase misma)
                 // - Que NO estén anuladas
                 const tareasf = edtData.filter(t => {
-                    const code = t.codigo_edt?.toString() || '';
+                    const faseTarea = t.fase || '';
                     const nivel = parseInt(t.nivel) || 0;
                     const estado = t.estado || '';
                     
-                    return code.startsWith(fase.num + '.') && 
+                    return faseTarea === fase.nombre && 
                            nivel > 1 && 
                            estado !== 'Anulado';
                 });
